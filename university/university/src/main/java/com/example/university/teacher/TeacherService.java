@@ -2,7 +2,6 @@ package com.example.university.teacher;
 
 import java.util.*;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,6 @@ public class TeacherService {
 	{
 		return teacherRepository.findAll();
 	}
-	@Transactional
 	public String createTeacher(Teacher teacher)
 	{
 		String teacherID="T";

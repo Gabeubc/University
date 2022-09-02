@@ -7,19 +7,22 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.university.department.DepartmentRepository;
 
 @Service
 public class StudentService {
 
 	private Integer countID=0;
 	final private StudentRepository studentRepository;
+	final private DepartmentRepository departmentRepository;
 
 
 
 	@Autowired
-	public StudentService(StudentRepository studentRepository) {
+	public StudentService(StudentRepository studentRepository, DepartmentRepository departmentRepository) {
 		super();
 		this.studentRepository = studentRepository;
+		this.departmentRepository = departmentRepository;
 	}
 	
 	public Student getStudent(String studentID)
@@ -30,24 +33,28 @@ public class StudentService {
 	{
 		return studentRepository.findAll();
 	}
-	@Transactional
 	public String createStudent(Student student)
 	{
 		String studentID="S";
 		if(!studentRepository.findTeacherByCodiceFiscale(student.getCodiceFiscale()).isPresent())
 		{
-			countID++;
-			int countIDLength= countID.toString().length();
-			for(int i=0; i< 6 - countIDLength; i++)
-				studentID+=0;
-			studentID+=countID;
-			String email= studentID+"@student.it";
-			student.setStudentID(studentID);
-			student.setUniversityEmail(email);
-			studentRepository.save(student);
+			if(departmentRepository.findDepartmentByName(student.getDepartment()).isPresent())
+			{
+				countID++;
+				int countIDLength= countID.toString().length();
+				for(int i=0; i< 6 - countIDLength; i++)
+					studentID+=0;
+				studentID+=countID;
+				String email= studentID+"@student.it";
+				student.setStudentID(studentID);
+				student.setUniversityEmail(email);
+				studentRepository.save(student);
+			}
+			
 		}
 		return studentID;	
 	}
+	@Transactional
 	public String updateStudentDepartment(Student student)
 	{
 		String done="";
