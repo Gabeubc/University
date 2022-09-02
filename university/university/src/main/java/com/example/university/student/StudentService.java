@@ -36,7 +36,7 @@ public class StudentService {
 	public String createStudent(Student student)
 	{
 		String studentID="S";
-		if(!studentRepository.findTeacherByCodiceFiscale(student.getCodiceFiscale()).isPresent())
+		if(!studentRepository.findStudentByCodiceFiscale(student.getCodiceFiscale()).isPresent())
 		{
 			if(departmentRepository.findDepartmentByName(student.getDepartment()).isPresent())
 			{
@@ -58,9 +58,9 @@ public class StudentService {
 	public String updateStudentDepartment(Student student)
 	{
 		String done="";
-		if(!student.getDepartment().equals(studentRepository.findTeacherByCodiceFiscale(student.getCodiceFiscale()).get().getDepartment()))
+		if(!student.getDepartment().equals(studentRepository.findStudentByCodiceFiscale(student.getCodiceFiscale()).get().getDepartment()))
 		{
-			studentRepository.findTeacherByCodiceFiscale(student.getCodiceFiscale()).get().setDepartment(student.getDepartment());
+			studentRepository.findStudentByCodiceFiscale(student.getCodiceFiscale()).get().setDepartment(student.getDepartment());
 			done="done";
 		}
 		return done;

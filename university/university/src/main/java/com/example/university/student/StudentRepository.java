@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String>{
 	
-	Optional<Student> findTeacherByCodiceFiscale(String codiceFiscale);
+	Optional<Student> findStudentByCodiceFiscale(String codiceFiscale);
 
 }

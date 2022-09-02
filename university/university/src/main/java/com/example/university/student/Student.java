@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Entity (name ="Student")
+@Entity (name ="student")
 @Table
 public class Student {
 
@@ -36,6 +36,9 @@ public class Student {
 	@Column(name ="email",
 			nullable= false)
 	private String email;
+	@Column(name ="groupe",
+			nullable =false)
+	private String groupe;
 	@Column(name ="universityEmail",
 			nullable= false)
 	private String universityEmail;
@@ -57,6 +60,15 @@ public class Student {
 		this.email = email;
 		this.universityEmail=universityEmail;
 		this.codiceFiscale = codiceFiscale;
+	}
+
+	
+	public String getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(String groupe) {
+		this.groupe = groupe;
 	}
 
 	public String getUniversityEmail() {
