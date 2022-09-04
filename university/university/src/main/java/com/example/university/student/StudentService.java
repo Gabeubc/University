@@ -17,17 +17,15 @@ public class StudentService {
 	final private DepartmentRepository departmentRepository;
 
 
-
 	@Autowired
 	public StudentService(StudentRepository studentRepository, DepartmentRepository departmentRepository) {
 		super();
 		this.studentRepository = studentRepository;
 		this.departmentRepository = departmentRepository;
 	}
-	
-	public Student getStudent(String studentID)
+	public Optional<Student> getStudent(String studentID)
 	{
-		return studentRepository.findById(studentID).get();
+		return studentRepository.findById(studentID);
 	}
 	public List<Student> getStudents()
 	{

@@ -49,7 +49,7 @@ public class Student {
 	public Student() {}
 
 	public Student(String studentID, String firstName, String lastName, LocalDate dob, String pob, String department,
-			String email, String codiceFiscale, String universityEmail) {
+			String email, String groupe, String codiceFiscale, String universityEmail) {
 		super();
 		this.studentID = studentID;
 		this.firstName = firstName;
@@ -59,6 +59,7 @@ public class Student {
 		this.department = department;
 		this.email = email;
 		this.universityEmail=universityEmail;
+		this.groupe = groupe;
 		this.codiceFiscale = codiceFiscale;
 	}
 

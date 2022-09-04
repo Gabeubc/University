@@ -18,7 +18,7 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 	@GetMapping(params ="id")
-	public Student getStudent(@RequestParam(name ="id") String studentID)
+	public Optional<Student> getStudent(@RequestParam(name ="id") String studentID)
 	{
 		return studentService.getStudent(studentID);
 	}
