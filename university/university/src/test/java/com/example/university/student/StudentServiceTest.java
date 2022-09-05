@@ -28,7 +28,7 @@ class StudentServiceTest {
 	void canGetAllTest() {
 		//when
 		studentServiceUnderTest.getStudents();
-		//then}
+		//then
 		verify(studentRepository).findAll();
 	
 	}

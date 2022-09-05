@@ -23,9 +23,9 @@ public class StudentService {
 		this.studentRepository = studentRepository;
 		this.departmentRepository = departmentRepository;
 	}
-	public Optional<Student> getStudent(String studentID)
+	public Student getStudent(String studentID)
 	{
-		return studentRepository.findById(studentID);
+		return studentRepository.findById(studentID).get();
 	}
 	public List<Student> getStudents()
 	{
