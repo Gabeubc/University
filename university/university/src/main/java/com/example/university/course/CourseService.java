@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 
 import com.example.university.department.DepartmentRepository;
+import com.example.university.teacher.Teacher;
+import com.example.university.teacher.TeacherRepository;
 
 @Service
 public class CourseService {
@@ -15,12 +17,15 @@ public class CourseService {
 	static private Integer countID=0;
 	final private CourseRepository courseRepository;
 	final private DepartmentRepository departmentRepository;
+	final private TeacherRepository teacherRepository;
 
 	@Autowired
-	public CourseService(CourseRepository courseRepository, DepartmentRepository departmentRepository) {
+	public CourseService(CourseRepository courseRepository, DepartmentRepository departmentRepository,
+			TeacherRepository teacherRepository) {
 		super();
 		this.courseRepository = courseRepository;
 		this.departmentRepository = departmentRepository;
+		this.teacherRepository = teacherRepository;
 	}
 	public Course getCourse(String courseID)
 	{
@@ -48,6 +53,10 @@ public class CourseService {
 					return courseID;
 			}
 			countID++;
+			Teacher teacher = teacherRepository.findById(course.getTeacherID()).get();
+			if(!teacher.getDepartment().equals(course.getDepartment()))
+				return courseID;
+			course.setTeacherID(teacher.getTeacherID());
 			int countIDLenght = countID.toString().length();
 			for(int i=0 ; i< 6 - countIDLenght ; i++)
 				courseID+=0;
@@ -56,6 +65,11 @@ public class CourseService {
 			courseRepository.save(course);
 		}
 		return courseID;
+	}
+	public String deleteCourseByID(String courseID)
+	{
+		courseRepository.deleteById(courseID);
+		return "done";
 	}
 	@Transactional
 	public String updateCourseStartTimeOrEndTime(Course course)

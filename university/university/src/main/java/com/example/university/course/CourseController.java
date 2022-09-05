@@ -37,5 +37,10 @@ public class CourseController {
 	{
 		return courseService.updateCourseStartTimeOrEndTime(course);
 	}
+	@GetMapping(path= "/delete",params ="id")
+	public String deleteCourserByID(@RequestParam(name ="id") String courseID)
+	{
+		return courseService.deleteCourseByID(courseID);
+	}
 	
 }

@@ -19,6 +19,9 @@ public class Course {
 	@Column(name ="department",
 			nullable =false)
 	private String department;
+	@Column(name= "teacherID",
+			nullable= false)
+	private String teacherID;
 	@Column(name ="studentGroup",
 			nullable =false)
 	private String studentGroup;
@@ -29,14 +32,22 @@ public class Course {
 			nullable =false)	
 	private Time endTime;
 	public Course() {}
-	public Course(String courseID, String name, String department, String studentGroup, Time startTime, Time endTime) {
+	public Course(String courseID, String name, String department, String teacherID, String studentGroup, Time startTime, Time endTime) {
 		super();
 		this.courseID = courseID;
 		this.name = name;
 		this.department = department;
+		this.teacherID = teacherID;
 		this.studentGroup = studentGroup;
 		this.startTime = startTime;
 		this.endTime = endTime;
+	}
+	
+	public String getTeacherID() {
+		return teacherID;
+	}
+	public void setTeacherID(String teacherID) {
+		this.teacherID = teacherID;
 	}
 	public String getCourseID() {
 		return courseID;
@@ -76,7 +87,7 @@ public class Course {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(courseID, department, endTime, name, startTime, studentGroup);
+		return Objects.hash(courseID, department, endTime, name, startTime, studentGroup, teacherID);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -89,12 +100,14 @@ public class Course {
 		Course other = (Course) obj;
 		return Objects.equals(courseID, other.courseID) && Objects.equals(department, other.department)
 				&& Objects.equals(endTime, other.endTime) && Objects.equals(name, other.name)
-				&& Objects.equals(startTime, other.startTime) && Objects.equals(studentGroup, other.studentGroup);
+				&& Objects.equals(startTime, other.startTime) && Objects.equals(studentGroup, other.studentGroup)
+				&& Objects.equals(teacherID, other.teacherID);
 	}
 	@Override
 	public String toString() {
-		return "Course [courseID=" + courseID + ", name=" + name + ", department=" + department + ", studentGroup="
-				+ studentGroup + ", startTime=" + startTime + ", endTime=" + endTime + "]";
+		return "Course [courseID=" + courseID + ", name=" + name + ", department=" + department + ", teacherID="
+				+ teacherID + ", studentGroup=" + studentGroup + ", startTime=" + startTime + ", endTime=" + endTime
+				+ "]";
 	}
 	
 }
