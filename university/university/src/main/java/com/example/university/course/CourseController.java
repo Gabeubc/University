@@ -27,6 +27,16 @@ public class CourseController {
 	{
 		return courseService.getCourse(courseID);
 	}
+	@GetMapping(path= "/delete",params ="id")
+	public String deleteCourserByID(@RequestParam(name ="id") String courseID)
+	{
+		return courseService.deleteCourseByID(courseID);
+	}
+	@GetMapping(path ="/byName", params ="name")
+	public List<Course> getCoursesByName(@RequestParam(name ="name") String name)
+	{
+		return courseService.getCourseName(name);
+	}
 	@PostMapping
 	public String createCourse(@RequestBody Course course)
 	{
@@ -36,11 +46,6 @@ public class CourseController {
 	public String updateStartTimeOrEndTime(Course course)
 	{
 		return courseService.updateCourseStartTimeOrEndTime(course);
-	}
-	@GetMapping(path= "/delete",params ="id")
-	public String deleteCourserByID(@RequestParam(name ="id") String courseID)
-	{
-		return courseService.deleteCourseByID(courseID);
 	}
 	
 }

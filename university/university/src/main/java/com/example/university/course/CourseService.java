@@ -35,6 +35,10 @@ public class CourseService {
 	{
 		return courseRepository.findAll();
 	}
+	public List<Course> getCourseName(String name)
+	{
+		return courseRepository.findAllCourseByName(name).get();
+	}
 	public String createCourse(Course course)
 	{
 		String courseID="C";
